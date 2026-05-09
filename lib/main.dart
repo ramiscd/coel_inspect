@@ -1,66 +1,52 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    AppWidget(
+      title: "App Ramis",
+    ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppWidget extends StatelessWidget {
+  final String title;
+
+  const AppWidget({super.key, required this.title});
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Coel Inspect',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFF8000)),
-      ),
-      home: const MyHomePage(title: 'Coel Inspect'),
+    return MaterialApp( // 1. O "Cérebro" do app (Configurações)
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+class HomePage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() {
+    return HomePageState();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class HomePageState extends State<HomePage> {
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+    return Scaffold( // 2. O "Esqueleto" da tela (Página)
+        body: Center( // 3. Alinhamento
+          child: GestureDetector(
+            child: Text(
+              "Contador $counter",
+              style: TextStyle(fontSize: 44), // Estilo opcional
             ),
-          ],
+            onTap: (){
+              setState(() {
+                counter++;
+              });
+            },
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
