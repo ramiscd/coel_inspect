@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../assets/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
             ),
             const SizedBox(height: 40),
-            
+
             // Campo de E-mail
             TextField(
               controller: _emailController,
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            
+
             // Campo de Senha
             TextField(
               controller: _passwordController,
@@ -51,26 +52,36 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Botão Entrar (Laranja Coel)
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Por enquanto, apenas navega para a Home
-                  print("Login: ${_emailController.text}");
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
-                child: const Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 18)),
+                child: const Text(
+                  "Entrar",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ),
             ),
             TextButton(
               onPressed: () {},
-              child: const Text("Esqueceu sua senha?", style: TextStyle(color: Colors.grey)),
+              child: const Text(
+                "Esqueceu sua senha?",
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
           ],
         ),
